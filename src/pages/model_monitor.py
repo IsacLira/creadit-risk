@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.metrics import plot_confusion_matrix
 from src.model_training import train_model
 from src.utils.data_handler import fetch_model
 from ..evaluation import compute_scores
@@ -74,3 +75,14 @@ def write():
     else:
         st.warning('Run the model training first.')
     
+    st.subheader('Confusion Matrix')
+    st.write(f"""
+    In the followin graph, we have the confusion matrix computed for the best model ({last_trial['clf_name'][0]}) on the valition set.
+    """)
+    partitions = last_trial['partitions']
+    x_val, y_val = partitions['val']
+    plot_confusion_matrix(last_trial['model_instance'], 
+                          x_val, y_val,
+                          cmap=plt.cm.Blues,
+                          normalize=None)    
+    st.pyplot(plt)                    
