@@ -34,7 +34,9 @@ def write():
     st.subheader("Model Info")
     st.markdown(
         """
-        There are 5 model being optimized:
+        There are 5 model being optimized using a bayesian algorithm. In total, 30 trials are run to select the most 
+        suitable set of parameters for each estimator below. And then, the model with the highest accuracy
+        is selected among all trained models. 
         * Random Forest
         * XGBoost
         * CatBoot
@@ -46,7 +48,7 @@ def write():
 
     st.subheader('Trained Model')    
     st.write("""
-        After run the bayesian optmiser over each model, the best one is selected with respect to the
+        After optmising each model, the best one is selected with respect to the
         accuracy score. Below the parameters found for the best model. (You can minimize this info for a better readability)
     """)
     
