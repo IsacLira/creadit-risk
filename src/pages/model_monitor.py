@@ -74,17 +74,20 @@ def write():
 
     if bool(last_trial):
         plot_scores(last_trial['cv-scores'])
-    else:
-        st.warning('Run the model training first.')
+        
     
     st.subheader('Confusion Matrix')
-    st.write(f"""
-    In the followin graph, we have the confusion matrix computed for the best model ({last_trial['clf_name'][0]}) on the valition set.
-    """)
-    partitions = last_trial['partitions']
-    x_val, y_val = partitions['val']
-    plot_confusion_matrix(last_trial['model_instance'], 
-                          x_val, y_val,
-                          cmap=plt.cm.Blues,
-                          normalize=None)    
-    st.pyplot(plt)                    
+
+    if bool(last_trial):
+        st.write(f"""
+        In the followin graph, we have the confusion matrix computed for the best model ({last_trial['clf_name'][0]}) on the valition set.
+        """)        
+        partitions = last_trial['partitions']
+        x_val, y_val = partitions['val']
+        plot_confusion_matrix(last_trial['model_instance'], 
+                            x_val, y_val,
+                            cmap=plt.cm.Blues,
+                            normalize=None)    
+        st.pyplot(plt) 
+    else:
+        st.warning('Need to run the model training..')                   
