@@ -5,6 +5,7 @@ This project intends to model credit risk by using machine learn algorithms. The
 
 ## Requirements 
 * Docker
+* Redis
 * Python
 * Streamlit
 * Ax Platform
