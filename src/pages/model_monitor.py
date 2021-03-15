@@ -40,6 +40,7 @@ def write():
         * Random Forest
         * XGBoost
         * CatBoot
+        * LightGBM
         * MLP
         * Logistic Regression
             
@@ -63,7 +64,7 @@ def write():
     trial will replace the previous model in the case of its accuracy be higher.""")
     button_action = st.sidebar.button(label='Train Model')
     if button_action: 
-        with st.spinner(f"Training a new model. Please wait..."):
+        with st.spinner(f"Optmizing all 6 models. Please wait..."):
             last_trial = train_model()        
         st.sidebar.success("A new model was trained succefully!")        
 
