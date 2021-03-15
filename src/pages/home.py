@@ -1,8 +1,23 @@
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 import pickle
 import streamlit as st
 from src.utils.data_handler import fetch_model, fetch_credit_data
+from src.db.database import RedisDB
 
+db = RedisDB()
+
+def plot_corr(df, key_='pairplot'):
+    plot = db.get_value(key_)
+    if plot:
+        print('Getting graph from DB')
+        return pickle.loads(plot)        
+    print('Generating graph')
+    sns.set_context("paper", rc={"axes.labelsize":16})
+    gfg = sns.pairplot(df, hue='label')
+    db.set_value(key_, pickle.dumps(gfg))
+    return gfg
 
 def write():
     st.title('Model prediction for Credit Risk')
@@ -38,8 +53,12 @@ def write():
        In the table below we see all samples from the dataset. 
        Each sample with its repective true label.
     """)
-    
+
     st.dataframe(data=df)
+
+    # st.subheader("Features Correlation")    
+    # a = plot_corr(df)
+    # st.pyplot(a)
 
     st.subheader("Predict Random Sample")
     st.write("""
