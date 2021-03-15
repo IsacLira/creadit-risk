@@ -24,10 +24,13 @@ def save_model(model, key=MODEL_KEY):
 
 def fetch_model(model_key=MODEL_KEY):
     try:
-        bin_model =db.get_value(model_key)
+        bin_model = db.get_value(model_key)
         return pickle.loads(bin_model)    
     except:
-        return None
+        with open('bin/model_start.pkl', 'rb') as f:
+            model_start = pickle.load(f)
+            save_model(model_start)
+        return model_start
 
 def fetch_credit_data(data_key='credict_data'): 
     data = db.get_value(data_key)   
