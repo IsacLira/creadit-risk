@@ -25,6 +25,11 @@ def write():
     st.title('Model prediction for Credit Risk')
 
     st.header("Data Analysis")
+    st.write(""" 
+    In order to model the credit risk, machine learning algorithms are applied to learn partterns from 
+    the data. The dataset used was the [UCI German Credit Dataset](https://archive.ics.uci.edu/ml/datasets/statlog+(german+credit+data)).
+    It has 20 categorical and numerical features useful to train the models. 
+    """)
     st.subheader("Data Description")
     st.markdown(""" 
     The features follow the description below:
@@ -50,6 +55,7 @@ def write():
     19. Telephone (yes,no)
     20. Foreign worker (yes,no)
     """)
+    
     df = fetch_credit_data()
     st.write(""" 
        In the table below we see all samples from the dataset. 
@@ -64,16 +70,17 @@ def write():
 
     st.subheader("Predict Random Sample")
     st.write("""
-        Press the button below to select a random sample and predict its label.
+        In this section the model is loaded to predict a random sample from the credit data.        
     """)
     button_action = st.button(label='Predict Sample')
 
     last_trial = fetch_model()
 
-    if button_action:
+    if button_action or 1:
         if not last_trial:
             st.text('No model was trained yet.')
         else:
+            st.write("Selected Sample:")
             sample = df.sample(1)
             x_sample, y_sample = sample.drop('label', axis=1), sample['label']
             st.dataframe(data=sample)

@@ -19,6 +19,7 @@ CONFIGS = {
             {'name': 'n_estimators', 'type': 'range', 'bounds': [1, 4]},
             {'name': 'reg_alpha', 'type': 'range', 'bounds': [0.001, 10.0]},
             {'name': 'reg_lambda', 'type': 'range', 'bounds': [0.001, 10.0]},
+            {'name': 'class_weight', 'type': 'choice', 'values': ["balanced", "balanced_subsample"]}           
         ],
         'model_instance': LGBMClassifier(random_state=100)
     },
@@ -72,6 +73,7 @@ CONFIGS = {
             {'name': 'solver', 'type': 'choice', 'values': [
                 'newton-cg', 'lbfgs', 'liblinear', 'sag', 'saga']},
             {'name': 'max_iter', 'type': 'range', 'bounds': [20, 120]},
+            {'name': 'class_weight', 'type': 'choice', 'values': ['balanced', 'None']},            
         ],
         'model_instance': LogisticRegression(**DEFAULT_PARAMS)
     },

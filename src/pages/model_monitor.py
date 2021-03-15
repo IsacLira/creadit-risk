@@ -34,7 +34,7 @@ def write():
     st.subheader("Model Info")
     st.markdown(
         """
-        There are 5 model being optimized using a bayesian algorithm. In total, 30 trials are run to select the most 
+        There are 6 model being optimized using a bayesian algorithm. In total, 30 trials are run to select the most 
         suitable set of parameters for each estimator below. And then, the model with the highest accuracy
         is selected among all trained models. 
         * Random Forest
@@ -60,8 +60,8 @@ def write():
     st.sidebar.title('Train a new model')
 
     st.sidebar.info("""
-    The models will be optmized again and best model from this 
-    trial will replace the previous model in the case of its accuracy be higher.""")
+    The models will be optmized again and the best model from this 
+    trial will replace the previous model.""")
     button_action = st.sidebar.button(label='Train Model')
     if button_action: 
         with st.spinner(f"Optmizing all 6 models. Please wait..."):
