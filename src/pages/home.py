@@ -8,16 +8,18 @@ from src.db.database import RedisDB
 
 db = RedisDB()
 
+
 def plot_corr(df, key_='pairplot'):
     plot = db.get_value(key_)
     if plot:
         print('Getting graph from DB')
-        return pickle.loads(plot)        
+        return pickle.loads(plot)
     print('Generating graph')
-    sns.set_context("paper", rc={"axes.labelsize":16})
+    sns.set_context("paper", rc={"axes.labelsize": 16})
     gfg = sns.pairplot(df, hue='label')
     db.set_value(key_, pickle.dumps(gfg))
     return gfg
+
 
 def write():
     st.title('Model prediction for Credit Risk')
@@ -48,7 +50,7 @@ def write():
     19. Telephone (yes,no)
     20. Foreign worker (yes,no)
     """)
-    df = fetch_credit_data()    
+    df = fetch_credit_data()
     st.write(""" 
        In the table below we see all samples from the dataset. 
        Each sample with its repective true label.
@@ -56,7 +58,7 @@ def write():
 
     st.dataframe(data=df)
 
-    # st.subheader("Features Correlation")    
+    # st.subheader("Features Correlation")
     # a = plot_corr(df)
     # st.pyplot(a)
 
@@ -67,7 +69,7 @@ def write():
     button_action = st.button(label='Predict Sample')
 
     last_trial = fetch_model()
-        
+
     if button_action:
         if not last_trial:
             st.text('No model was trained yet.')
@@ -85,4 +87,3 @@ def write():
             st.markdown(f"""
             - **Predicted Value**: {prediction[0]}  
             - **Actual Value**: {y_sample.iloc[0]}""")
-        

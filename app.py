@@ -1,9 +1,11 @@
-import pandas as pd
 import pickle
+
+import pandas as pd
 import streamlit as st
-from src.db.database import RedisDB
-import src.pages.model_monitor
+
 import src.pages.home
+import src.pages.model_monitor
+from src.db.database import RedisDB
 
 PAGES = {
     "Home": src.pages.home,

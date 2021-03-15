@@ -4,6 +4,7 @@ import pickle
 
 import redis
 
+
 class RedisDB:
     def __init__(self):
         self.conn = redis.Redis(
