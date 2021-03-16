@@ -17,4 +17,4 @@ In order to run the app, type the following command in your terminal to build an
 ```
 $ docker-compose up -d --build
 ```
-And then you access the app on `http://localhost:8501/` 
+And then you can access the app on `http://localhost:8501/` 
